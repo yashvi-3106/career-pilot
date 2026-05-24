@@ -1,42 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  UtensilsCrossed,
-  Award,
-  ChefHat,
-  Flame,
-  Sparkles,
-  Clock,
-  Quote,
-  Heart,
-  Calendar,
-  Compass,
-  ArrowRight,
-  Star,
-  Trophy,
-  Leaf,
-  Users,
-  MapPin,
-  TrendingUp
-} from 'lucide-react';
-
-const IconMap = {
-  UtensilsCrossed,
-  Award,
-  ChefHat,
-  Flame,
-  Sparkles,
-  Clock,
-  Heart,
-  Calendar,
-  Compass,
-  Star,
-  Trophy,
-  Leaf,
-  Users,
-  MapPin,
-  TrendingUp
-};
 
 export default function About({
   title = "Where culinary art meets timeless tradition",
@@ -44,45 +7,6 @@ export default function About({
   established = "EST. 2004",
   storyTitle = "A Legacy of Taste",
   story = "Our culinary journey began with a simple belief: that dining should be a sensory celebration. Over the last two decades, we have refined our craft, marrying classical gastronomy techniques with modern culinary imagination to deliver unforgettable plates that tell a story of heritage and passion. What started as a modest 40-seat dining room has blossomed into an award-winning culinary destination, yet our commitment to excellence remains unchanged. Every dish we create is a testament to our dedication to the art of cooking, our respect for ingredients, and our passion for creating moments that linger in memory long after the last bite.",
-  chef = {
-    name: "Executive Chef Vance",
-    quote:
-      "A plate of food is a canvas where we paint our respect for the soil, the sea, and the seasonality. Every ingredient has a voice; our role is simply to let it sing in perfect harmony.",
-    role: "Culinary Director & Founder",
-    signature: "Julian Vance"
-  },
-  pillars = [
-    {
-      title: "Artisanal Sourcing",
-      description:
-        "We work directly with local organic growers and day-boat fishermen to secure ingredients at their peak freshness.",
-      icon: "Sparkles"
-    },
-    {
-      title: "Masterful Technique",
-      description:
-        "Our kitchen honors time-tested classical foundations while fearlessly exploring new culinary frontiers.",
-      icon: "Flame"
-    },
-    {
-      title: "Sensory Harmony",
-      description:
-        "Each dish is meticulously choreographed to balance texture, temperature, flavor profile, and visual aesthetics.",
-      icon: "UtensilsCrossed"
-    },
-    {
-      title: "Sustainable Practices",
-      description:
-        "Zero-waste kitchen philosophy, composting programs, and partnerships with biodynamic farms.",
-      icon: "Leaf"
-    },
-    {
-      title: "Community Focus",
-      description:
-        "Supporting local food banks, culinary education programs, and neighborhood initiatives.",
-      icon: "Heart"
-    }
-  ],
   tabs = [
     {
       id: "heritage",
@@ -119,38 +43,6 @@ export default function About({
       content:
         "At our core, we believe that great food is about connection—between farmer and chef, between kitchen and table, between tradition and innovation. Every plate tells a story, every meal creates a memory, and every guest becomes part of our extended family."
     }
-  ],
-  statistics = [
-    { value: "20+", label: "Years of Excellence", icon: "Calendar" },
-    { value: "50K+", label: "Dishes Crafted", icon: "UtensilsCrossed" },
-    { value: "15", label: "Industry Awards", icon: "Trophy" },
-    { value: "4.9", label: "Guest Rating", icon: "Star" }
-  ],
-  timeline = [
-    {
-      year: "2004",
-      title: "The Beginning",
-      description:
-        "Opened our doors with a vision of authentic, ingredient-driven cuisine."
-    },
-    {
-      year: "2010",
-      title: "First Recognition",
-      description:
-        "Received our first major culinary award and expanded to 80 seats."
-    },
-    {
-      year: "2016",
-      title: "Sustainability Pioneer",
-      description:
-        "Implemented zero-waste kitchen and partnered with 20+ local farms."
-    },
-    {
-      year: "2024",
-      title: "Two Decades",
-      description:
-        "Celebrating 20 years of culinary excellence and community impact."
-    }
   ]
 }) {
 
@@ -160,7 +52,7 @@ export default function About({
   const [activeTab, setActiveTab] = useState(initialTabId);
 
   useEffect(() => {
-    if (!tabs?.length) {
+    if (!Array.isArray(tabs) || !tabs.length) {
       setActiveTab(null);
       return;
     }
@@ -257,7 +149,7 @@ export default function About({
             </div>
 
             {/* Tabs */}
-            {tabs?.length > 0 && (
+            {Array.isArray(tabs) && tabs.length > 0 && (
               <>
                 <div className="border-b border-[#D4AF37]/20 pb-2">
                   <div className="flex flex-wrap gap-6 md:gap-8">
