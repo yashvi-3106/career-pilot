@@ -457,12 +457,28 @@ export const aiApi = {
   }
 }
 
+// Helper to build query params, properly serializing nested objects/arrays
+function buildParams(params) {
+  const usp = new URLSearchParams()
+  for (const [key, value] of Object.entries(params)) {
+    if (value === null || value === undefined) continue
+    if (Array.isArray(value)) {
+      value.forEach(v => usp.append(key, String(v)))
+    } else if (typeof value === 'object') {
+      usp.append(key, JSON.stringify(value))
+    } else {
+      usp.append(key, String(value))
+    }
+  }
+  return usp
+}
+
 // ============ JOBS API ============
 export const jobsApi = {
   // Search jobs with query
   async search(query, filters = {}) {
     const headers = await getAuthHeaders()
-    const params = new URLSearchParams({ query, ...filters })
+    const params = buildParams({ query, ...filters })
     const response = await fetch(`${API_BASE}/fetchjobs?${params}`, {
       method: 'GET',
       headers
@@ -497,10 +513,13 @@ export const jobTrackerApi = {
   // Update job application status
   async updateStatus(jobId, status, notes = '') {
     const headers = await getAuthHeaders()
+    const body = { status };
+    if (notes) body.notes = notes;
+    
     const response = await fetch(`${API_BASE}/job-tracker/${jobId}`, {
       method: 'PUT',
       headers,
-      body: JSON.stringify({ status, notes })
+      body: JSON.stringify(body)
     })
     return handleResponse(response)
   },
