@@ -13,6 +13,19 @@ export const templates = [
   "isComplete": true
 },
 {
+  "id": "Tattoo_Artist_Flash_Sheet_Wall",
+  "title": "Tattoo Artist Flash Sheet Wall",
+  "category": "Portfolio",
+  "colorScheme": "Dark",
+  "layout": "Interactive",
+  "author": "yashvi-3106",
+  "views": 0,
+  "rating": 0,
+  "image": "/templates/Tattoo_Artist_Flash_Sheet_Wall.png",
+  "createdAt": "2026-06-10",
+  "isComplete": true
+},
+{
   "id": "Infinite_Zoom_Mandelbrot_Set",
   "title": "Infinite Zoom Mandelbrot Set",
   "category": "Portfolio",
